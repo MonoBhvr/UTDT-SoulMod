@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj/**</DefaultItemExcludes>
+  </PropertyGroup>
+  <Target Name="ValidateUmtWorkerDependencyDirectory" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(UmtWorkerDependencyDirectory)' == ''" Text="UmtWorkerDependencyDirectory is required; provide the repository-relative or explicit directory containing the UMT dependency DLLs." />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)')" Text="UmtWorkerDependencyDirectory does not exist: $(UmtWorkerDependencyDirectory)" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\UndertaleModLib.dll')" Text="Missing UMT dependency: UndertaleModLib.dll" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\Underanalyzer.dll')" Text="Missing UMT dependency: Underanalyzer.dll" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\Magick.NET.Core.dll')" Text="Missing UMT dependency: Magick.NET.Core.dll" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\Magick.NET-Q8-AnyCPU.dll')" Text="Missing UMT dependency: Magick.NET-Q8-AnyCPU.dll" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\ICSharpCode.SharpZipLib.dll')" Text="Missing UMT dependency: ICSharpCode.SharpZipLib.dll" />
+    <Error Condition="!Exists('$(UmtWorkerDependencyDirectory)\Magick.Native-Q8-x64.dll')" Text="Missing UMT dependency: Magick.Native-Q8-x64.dll" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="UndertaleModLib">
+      <HintPath>$(UmtWorkerDependencyDirectory)\UndertaleModLib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Underanalyzer">
+      <HintPath>$(UmtWorkerDependencyDirectory)\Underanalyzer.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Magick.NET.Core">
+      <HintPath>$(UmtWorkerDependencyDirectory)\Magick.NET.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Magick.NET-Q8-AnyCPU">
+      <HintPath>$(UmtWorkerDependencyDirectory)\Magick.NET-Q8-AnyCPU.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>$(UmtWorkerDependencyDirectory)\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(UmtWorkerDependencyDirectory)\Magick.Native-Q8-x64.dll" Link="Magick.Native-Q8-x64.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

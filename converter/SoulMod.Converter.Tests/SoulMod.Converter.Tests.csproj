@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Target Name="ValidateSoulModUmtWorkerPath" BeforeTargets="VSTest">
+    <Error Condition="'$(SoulModUmtWorkerPath)' == ''" Text="SoulModUmtWorkerPath is required for converter tests; publish SoulMod.UmtWorker and pass its executable path." />
+    <Error Condition="!Exists('$(SoulModUmtWorkerPath)')" Text="SoulModUmtWorkerPath does not exist: $(SoulModUmtWorkerPath)" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="xunit" Version="2.7.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoulMod.Package\SoulMod.Package.csproj" />
+    <ProjectReference Include="..\SoulMod.GameMakerDiff\SoulMod.GameMakerDiff.csproj" />
+    <ProjectReference Include="..\SoulMod.Importer.XDelta\SoulMod.Importer.XDelta.csproj" />
+  </ItemGroup>
+
+</Project>
