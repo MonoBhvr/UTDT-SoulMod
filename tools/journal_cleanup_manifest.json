@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "source": ".debug-journal.md#artifacts-to-revert",
+  "purpose": "Task 3 retain/revert input. Paths are repository-relative unless explicitly rooted at /tmp.",
+  "retain": [
+    {
+      "path": ".debug-journal.md",
+      "until": "task-35-final-cleanup",
+      "reason": "Local debug ledger remains authoritative until final cleanup."
+    },
+    {
+      "path": "mods/runtime-proof/",
+      "until": "accepted-fixture-retirement",
+      "reason": "Tracked declarative runtime proof fixture used by package and runtime tests."
+    },
+    {
+      "path": "scratch/AurieFramework/SoulModPlugin/",
+      "until": "promoted-runtime-parity-green",
+      "reason": "Tracked behavioral oracle; source, tests, and project files are explicitly retained."
+    },
+    {
+      "path": ".omo/evidence/stage-global-json/44-korean-restart.png",
+      "until": "task-35-final-cleanup",
+      "reason": "Promoted Korean guarded-restart evidence."
+    },
+    {
+      "path": ".omo/evidence/stage-global-json/45-english-no-restart.log",
+      "until": "task-35-final-cleanup",
+      "reason": "Promoted English negative-control evidence."
+    }
+  ],
+  "revert": [
+    {
+      "path": "/tmp/ulw-20260802-213347.QajZLI.md",
+      "reason": "Local ultrawork notepad."
+    },
+    {
+      "path": ".omo/evidence/stage-f7-baseline/",
+      "reason": "Pre-change screenshots not promoted as final evidence."
+    },
+    {
+      "path": "/tmp/opencode/Galmuri-v2.40.3.zip",
+      "reason": "Extracted OFL font download."
+    },
+    {
+      "path": "scratch/test_game/mods/aurie/",
+      "reason": "Disposable Aurie package deployment."
+    },
+    {
+      "path": "/tmp/opencode/SoulModPlugin.pre-operation.dll",
+      "reason": "Temporary proof-DLL backup."
+    },
+    {
+      "path": "scratch/test_game/chapter1_windows/",
+      "reason": "Disposable Chapter 1 game copy and direct-launch deployment."
+    },
+    {
+      "path": "/tmp/opencode/dotnet10/",
+      "reason": "Portable SDK used for isolated UMT worker builds."
+    },
+    {
+      "path": "/tmp/opencode/dotnet-install.sh",
+      "reason": "Portable SDK installer."
+    },
+    {
+      "path": "artifacts/umtdiff/win-x64/",
+      "reason": "Generated self-contained worker publish output."
+    },
+    {
+      "path": "/tmp/opencode/umtworker-obj/",
+      "reason": "Linux worker-build intermediate."
+    },
+    {
+      "path": "/tmp/opencode/umtworker-bin/",
+      "reason": "Linux worker-build intermediate."
+    }
+  ],
+  "policy": [
+    {
+      "path": "future-decoded-data.win",
+      "action": "create-only-in-journaled-temporary-path-and-delete-after-extraction"
+    }
+  ]
+}

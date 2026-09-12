@@ -1,0 +1,69 @@
+# SoulMod repository ignore rules.
+# Full path classification report: .omo/evidence/wave-1/path-classification.txt
+# Boundary policy: .omo/plans/soulmod-platform-roadmap.md (Wave 1, checkbox 1).
+# Regenerate with: python3 tools/repo_hygiene.py report
+
+# ---- .omo orchestrator state (local agent state, never committed) ----
+.omo/
+
+# ---- Local debug journal (see .debug-journal.md "Artifacts to revert") ----
+.debug-journal.md
+
+# ---- Generated build trees ----
+runtime/build/
+artifacts/
+**/bin/
+**/obj/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# ---- User-owned / licensed game material and scratch/POC area ----
+# The behavioral oracle is the sole source exception. Its source and native test
+# project remain tracked until promoted-runtime parity is accepted.
+scratch/
+!scratch/
+scratch/*
+!scratch/AurieFramework/
+scratch/AurieFramework/*
+!scratch/AurieFramework/SoulModPlugin/
+scratch/AurieFramework/SoulModPlugin/*
+!scratch/AurieFramework/SoulModPlugin/SoulModPlugin.vcxproj
+!scratch/AurieFramework/SoulModPlugin/source/
+!scratch/AurieFramework/SoulModPlugin/source/**
+!scratch/AurieFramework/SoulModPlugin/tests/
+!scratch/AurieFramework/SoulModPlugin/tests/RuntimeOperationsTests.cpp
+!scratch/AurieFramework/SoulModPlugin/tests/RuntimeOperationsTests.vcxproj
+scratch/AurieFramework/SoulModPlugin/**/x64/
+
+# ---- Generated canonical package archives ----
+*.soulmod
+
+# ---- Third-party binary tools (provisioned by the build/bootstrap, Wave 2) ----
+tools/*.exe
+tools/*.zip
+
+# ---- Unattributed third-party reference scripts (duplicated under scratch/) ----
+CommunityScripts/
+
+# ---- Unreferenced scratch extraction data ----
+tools/ko_ch2.txt
+
+# ---- Runtime / build logs ----
+*.log
+
+# ---- Editor / IDE private state ----
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# ---- Operating-system junk ----
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# ---- Accidental empty stub file at repo root ----
+/dotnet

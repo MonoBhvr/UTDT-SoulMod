@@ -1,2 +1,46 @@
-# Auto detect text files and perform LF normalization
+# Default: auto-detect text and normalize line endings in the index
 * text=auto
+
+# Binary assets -- never normalize, never diff as text.
+# Protects tracked mod/fixture binaries (png/ttf/xdelta/win/bin) and prevents
+# accidental corruption of generated/ignored binaries if they are ever staged.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.ttf    binary
+*.otf    binary
+*.woff   binary
+*.woff2  binary
+*.xdelta binary
+*.zip    binary
+*.dll    binary
+*.exe    binary
+*.pdb    binary
+*.ogg    binary
+*.win    binary
+*.dat    binary
+*.bin    binary
+*.so     binary
+*.dylib  binary
+*.soulmod binary
+
+# Text sources and docs (text without forced eol: native in working tree,
+# LF in index; preserves Visual Studio .sln/.csproj expectations on Windows)
+*.cs     text
+*.cpp    text
+*.cc     text
+*.cxx    text
+*.hpp    text
+*.h      text
+*.hh     text
+*.hxx    text
+*.cmake  text
+*.csproj text
+*.sln    text
+*.py     text
+*.csx    text
+*.sh     text
+*.ps1    text
+*.json   text
+*.md     text
+CMakeLists.txt text
