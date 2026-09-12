@@ -13,6 +13,7 @@
 namespace fs = std::filesystem;
 
 EXPORTED Aurie::AurieStatus ModuleInitialize(IN Aurie::AurieModule* module, IN const fs::path& modulePath) {
+    SoulMod::Logger::Instance().Initialize((modulePath.parent_path() / "SoulMod.Runtime.log").string());
     if (module == nullptr || !SoulMod::YYToolkitAdapter::Instance().Initialize()) return Aurie::AURIE_MODULE_DEPENDENCY_NOT_RESOLVED;
     wchar_t executable[MAX_PATH] = {};
     if (GetModuleFileNameW(nullptr, executable, MAX_PATH) == 0) return Aurie::AURIE_MODULE_INITIALIZATION_FAILED;

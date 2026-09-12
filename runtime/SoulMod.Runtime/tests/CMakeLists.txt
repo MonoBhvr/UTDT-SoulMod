@@ -35,3 +35,7 @@ add_test(NAME SoulModRuntime.GlobalJsonEpoch COMMAND SoulModRuntimeGlobalJsonEpo
 add_executable(SoulModRuntimeParityTests RuntimeParityTests.cpp ${SOULMOD_RUNTIME_TEST_DOUBLE})
 target_link_libraries(SoulModRuntimeParityTests PRIVATE SoulMod.Runtime.Core psapi bcrypt)
 add_test(NAME SoulModRuntime.Parity COMMAND SoulModRuntimeParityTests)
+
+add_executable(SoulModRuntimeLoggerTests LoggerTests.cpp ${SOULMOD_RUNTIME_TEST_DOUBLE})
+target_link_libraries(SoulModRuntimeLoggerTests PRIVATE SoulMod.Runtime.Core psapi bcrypt)
+add_test(NAME SoulModRuntime.LoggerTests COMMAND SoulModRuntimeLoggerTests)
