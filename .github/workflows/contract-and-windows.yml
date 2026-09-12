@@ -1,0 +1,166 @@
+name: SoulMod contract and Windows verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  managed-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      EVIDENCE_DIR: .omo/evidence/wave-1/ci-managed
+    steps:
+      # Official actions are pinned to maintained major versions for repeatable runner behavior.
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up supported Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run pure managed contracts
+        shell: bash
+        run: |
+          set -u
+          mkdir -p "$EVIDENCE_DIR"
+          stdout_file="$EVIDENCE_DIR/managed-stdout.txt"
+          stderr_file="$EVIDENCE_DIR/managed-stderr.txt"
+          result_file="$EVIDENCE_DIR/managed-test-results.txt"
+          : > "$stdout_file"
+          : > "$stderr_file"
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/build_windows_test.py >> "$stdout_file" 2>> "$stderr_file"
+          build_contract_status=$?
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/repo_hygiene_test.py >> "$stdout_file" 2>> "$stderr_file"
+          hygiene_status=$?
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci_contract_test.py >> "$stdout_file" 2>> "$stderr_file"
+          workflow_contract_status=$?
+          set -e
+          printf 'build_windows_contract_exit_code=%s\n' "$build_contract_status" >> "$stdout_file"
+          printf 'repo_hygiene_exit_code=%s\n' "$hygiene_status" >> "$stdout_file"
+          printf 'ci_contract_exit_code=%s\n' "$workflow_contract_status" >> "$stdout_file"
+          if [ ! -s "$stderr_file" ]; then printf '[no stderr]\n' > "$stderr_file"; fi
+          test_status=0
+          if [ "$build_contract_status" -ne 0 ] || [ "$hygiene_status" -ne 0 ] || [ "$workflow_contract_status" -ne 0 ]; then test_status=1; fi
+          python3 tools/ci_validation.py record-result \
+            --stdout "$stdout_file" --stderr "$stderr_file" \
+            --exit-code "$test_status" --report "$result_file"
+          python3 tools/ci_validation.py require-artifacts --root . \
+            --path ".omo/evidence/wave-1/ci-managed/managed-stdout.txt" \
+            --path ".omo/evidence/wave-1/ci-managed/managed-stderr.txt" \
+            --path ".omo/evidence/wave-1/ci-managed/managed-test-results.txt" \
+            --write-integrity ".omo/evidence/wave-1/ci-managed/managed-integrity.txt"
+          python3 tools/ci_validation.py require-artifacts --root . \
+            --path ".omo/evidence/wave-1/ci-managed/managed-stdout.txt" \
+            --path ".omo/evidence/wave-1/ci-managed/managed-stderr.txt" \
+            --path ".omo/evidence/wave-1/ci-managed/managed-test-results.txt" \
+            --path ".omo/evidence/wave-1/ci-managed/managed-integrity.txt"
+          exit "$test_status"
+      - name: Upload managed evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulmod-managed-contract-evidence
+          path: .omo/evidence/wave-1/ci-managed
+          if-no-files-found: error
+          retention-days: 14
+
+  windows-native:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: [self-hosted, windows, x64, soulmod-native]
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      # These secrets are source directories provisioned on the dedicated runner.
+      SOULMOD_UMT_DEPENDENCY_SOURCE: ${{ secrets.SOULMOD_UMT_DEPENDENCY_SOURCE }}
+      SOULMOD_AURIE_SOURCE: ${{ secrets.SOULMOD_AURIE_SOURCE }}
+      SOULMOD_GAME_FIXTURE_SOURCE: ${{ secrets.SOULMOD_GAME_FIXTURE_SOURCE }}
+      SOULMOD_GAME_FIXTURES_PROVISIONED: ${{ secrets.SOULMOD_GAME_FIXTURES_PROVISIONED }}
+      EVIDENCE_DIR: soulmod-ci/.omo/evidence/wave-1/ci-windows
+    steps:
+      # Official actions are pinned to maintained major versions for repeatable runner behavior.
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          path: soulmod-ci
+      - name: Prepare Windows evidence directory
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force -Path $env:EVIDENCE_DIR | Out-Null
+      - name: Set up supported Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up .NET 8 and .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.x
+            10.x
+      - name: Run explicitly provisioned Windows lane
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $repoRoot = Join-Path $env:GITHUB_WORKSPACE 'soulmod-ci'
+          $stdoutFile = Join-Path $env:GITHUB_WORKSPACE "$env:EVIDENCE_DIR/windows-stdout.txt"
+          $stderrFile = Join-Path $env:GITHUB_WORKSPACE "$env:EVIDENCE_DIR/windows-stderr.txt"
+          $resultFile = Join-Path $env:GITHUB_WORKSPACE "$env:EVIDENCE_DIR/windows-test-results.txt"
+          $integrityFile = Join-Path $env:GITHUB_WORKSPACE "$env:EVIDENCE_DIR/windows-integrity.txt"
+          $stageRoot = Join-Path $repoRoot "scratch/ci-native-$env:GITHUB_RUN_ID"
+          $gameRoot = Join-Path $repoRoot 'scratch/test_game'
+          New-Item -ItemType Directory -Force -Path (Split-Path $stdoutFile) | Out-Null
+          Set-Content -Path $stdoutFile -Value ''
+          Set-Content -Path $stderrFile -Value ''
+          $testStatus = 0
+          try {
+            if ([string]::IsNullOrWhiteSpace($env:SOULMOD_UMT_DEPENDENCY_SOURCE) -or [string]::IsNullOrWhiteSpace($env:SOULMOD_AURIE_SOURCE) -or [string]::IsNullOrWhiteSpace($env:SOULMOD_GAME_FIXTURE_SOURCE)) {
+              throw 'Explicit UMT, Aurie, and game fixture source secrets are required.'
+            }
+            $vsShell = Get-ChildItem -Path "$env:ProgramFiles\Microsoft Visual Studio\2022" -Filter Launch-VsDevShell.ps1 -Recurse -File | Select-Object -First 1
+            if ($null -eq $vsShell) { throw 'VS2022 Developer PowerShell launcher was not found.' }
+            . $vsShell.FullName -Arch amd64 -HostArch amd64
+            New-Item -ItemType Directory -Force -Path $stageRoot | Out-Null
+            $umtRoot = Join-Path $stageRoot 'umt'
+            $aurieRoot = Join-Path $stageRoot 'aurie'
+            New-Item -ItemType Directory -Force -Path $umtRoot, $aurieRoot | Out-Null
+            Copy-Item -Path (Join-Path $env:SOULMOD_UMT_DEPENDENCY_SOURCE '*') -Destination $umtRoot -Recurse -Force
+            Copy-Item -Path (Join-Path $env:SOULMOD_AURIE_SOURCE '*') -Destination $aurieRoot -Recurse -Force
+            if (Test-Path -LiteralPath $gameRoot) { Remove-Item -LiteralPath $gameRoot -Recurse -Force }
+            New-Item -ItemType Directory -Force -Path $gameRoot | Out-Null
+            Copy-Item -Path (Join-Path $env:SOULMOD_GAME_FIXTURE_SOURCE '*') -Destination $gameRoot -Recurse -Force
+            & python (Join-Path $repoRoot 'tools/ci_validation.py') fixture-gate --root $repoRoot --provisioned $env:SOULMOD_GAME_FIXTURES_PROVISIONED 1>> $stdoutFile 2>> $stderrFile
+            if ($LASTEXITCODE -ne 0) { $testStatus = 1 }
+            if ($testStatus -eq 0) {
+              & pwsh -NoProfile -File (Join-Path $repoRoot 'tools/build_windows.ps1') -RepoRoot $repoRoot -UmtDependencyDirectory $umtRoot -AurieRoot $aurieRoot 1>> $stdoutFile 2>> $stderrFile
+              if ($LASTEXITCODE -ne 0) { $testStatus = 1 }
+            }
+          } catch {
+            Add-Content -Path $stderrFile -Value 'WINDOWS_PROVISIONING_OR_LANE_FAILURE'
+            $testStatus = 1
+          } finally {
+            try {
+              if (Test-Path -LiteralPath $stageRoot) { Remove-Item -LiteralPath $stageRoot -Recurse -Force }
+            } finally {
+              if (Test-Path -LiteralPath $gameRoot) { Remove-Item -LiteralPath $gameRoot -Recurse -Force }
+            }
+          }
+          if ((Get-Item -LiteralPath $stderrFile).Length -eq 0) { Add-Content -Path $stderrFile -Value '[no stderr]' }
+          & python (Join-Path $repoRoot 'tools/ci_validation.py') record-result --stdout $stdoutFile --stderr $stderrFile --exit-code $testStatus --report $resultFile
+          & python (Join-Path $repoRoot 'tools/ci_validation.py') require-artifacts --root $repoRoot --path ".omo/evidence/wave-1/ci-windows/windows-test-results.txt" --path ".omo/evidence/wave-1/ci-windows/windows-stdout.txt" --path ".omo/evidence/wave-1/ci-windows/windows-stderr.txt" --write-integrity ".omo/evidence/wave-1/ci-windows/windows-integrity.txt"
+          & python (Join-Path $repoRoot 'tools/ci_validation.py') require-artifacts --root $repoRoot --path ".omo/evidence/wave-1/ci-windows/windows-test-results.txt" --path ".omo/evidence/wave-1/ci-windows/windows-stdout.txt" --path ".omo/evidence/wave-1/ci-windows/windows-stderr.txt" --path ".omo/evidence/wave-1/ci-windows/windows-integrity.txt"
+          if ($LASTEXITCODE -ne 0) { $testStatus = 1 }
+          exit $testStatus
+      - name: Upload Windows evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulmod-windows-native-evidence
+          path: soulmod-ci/.omo/evidence/wave-1/ci-windows
+          if-no-files-found: error
+          retention-days: 14
