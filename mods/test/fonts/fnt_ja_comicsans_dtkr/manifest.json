@@ -1,0 +1,12 @@
+{
+  "Name": "fnt_ja_comicsans",
+  "OriginalFontId": 0,
+  "Description": "Gulim 16px",
+  "Renderer": "soul_text",
+  "GlyphCount": 11310,
+  "HangulGlyphCount": 11172,
+  "TxtrIndex": 9,
+  "TxtrBlobOffset": 7653376,
+  "AtlasPngIndex": 0,
+  "Source": "dtkr_patch"
+}

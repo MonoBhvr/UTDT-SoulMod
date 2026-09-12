@@ -1,0 +1,12 @@
+{
+  "Name": "fnt_ja_legend",
+  "OriginalFontId": 12,
+  "Description": "DeltaGlassKR",
+  "Renderer": "soul_text",
+  "GlyphCount": 11644,
+  "HangulGlyphCount": 11172,
+  "TxtrIndex": 15,
+  "TxtrBlobOffset": 8865536,
+  "AtlasPngIndex": 6,
+  "Source": "dtkr_patch"
+}

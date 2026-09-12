@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_small",
+  "OriginalFontId": 7,
+  "Description": "Crypt of Tomorrow",
+  "FirstChar": 32,
+  "LastChar": 127,
+  "GlyphCount": 73,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

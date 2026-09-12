@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_tinynoelle",
+  "OriginalFontId": 3,
+  "Description": "DotumChe",
+  "FirstChar": 32,
+  "LastChar": 127,
+  "GlyphCount": 81,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

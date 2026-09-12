@@ -1,0 +1,8 @@
+{
+  "formatVersion": 1,
+  "id": "override.mod",
+  "name": "High Priority Override Mod",
+  "version": "1.0.0",
+  "priority": 200,
+  "stringsFile": "strings.json"
+}

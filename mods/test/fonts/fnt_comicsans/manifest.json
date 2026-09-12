@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_comicsans",
+  "OriginalFontId": 11,
+  "Description": "Comic Sans MS - DO NOT EDIT IN GAMEMAKER",
+  "FirstChar": 32,
+  "LastChar": 127,
+  "GlyphCount": 85,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

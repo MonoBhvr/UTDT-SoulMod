@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://soulmod.dev/schema/operations-v1.json",
+  "title": "SoulMod operations v1",
+  "type": "array",
+  "items": { "$ref": "#/$defs/operation" },
+  "$defs": {
+    "packageId": { "type": "string", "pattern": "^[a-zA-Z0-9._-]+$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+    "packagePath": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))[A-Za-z0-9._/-]+$" },
+    "resourceKey": { "type": "string", "pattern": "^[a-z]+:[^\\s:]+$" },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name"],
+      "properties": {
+        "type": { "enum": ["code", "string", "font", "sprite", "texture", "audio", "hook", "file", "global"] },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "precondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedValue": { "type": "string" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      },
+      "minProperties": 1
+    },
+    "globalSelector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applyAt"],
+      "properties": {
+        "applyAt": { "const": "first.draw_set_font" },
+        "mirrorGlobals": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" } },
+        "when": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["global", "equals"],
+          "properties": {
+            "global": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" },
+            "equals": { "type": "string" }
+          }
+        }
+      }
+    },
+    "fontSelector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size", "bold", "italic", "first", "last"],
+      "properties": {
+        "size": { "type": "integer", "minimum": 1 },
+        "bold": { "type": "boolean" },
+        "italic": { "type": "boolean" },
+        "first": { "type": "integer", "minimum": 0 },
+        "last": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "operationVersion", "modId", "target", "operation", "reads", "writes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/packageId" },
+        "operationVersion": { "const": 1 },
+        "modId": { "$ref": "#/$defs/packageId" },
+        "target": { "$ref": "#/$defs/target" },
+        "operation": { "enum": ["string.replace", "string.add", "code.replace", "resource.redirect", "resource.replace", "resource.add", "sprite.replace", "sprite.frame.replace", "font.register", "font.redirect", "texture.replace", "audio.replace", "hook.before", "hook.after", "hook.replace", "call.argument.replace", "global.json.load"] },
+        "selector": { "type": "object" },
+        "precondition": { "$ref": "#/$defs/precondition" },
+        "value": { "type": "string" },
+        "assetPath": { "$ref": "#/$defs/packagePath" },
+        "assetSha256": { "$ref": "#/$defs/sha256" },
+        "priority": { "type": "integer" },
+        "reads": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/resourceKey" } },
+        "writes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/resourceKey" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "operation": { "enum": ["global.json.load", "resource.redirect", "resource.replace", "resource.add", "font.register"] } } },
+          "then": { "required": ["assetPath", "assetSha256"] }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "string.replace" } } },
+          "then": { "required": ["precondition", "value"], "properties": { "precondition": { "required": ["expectedValue"] } } }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "resource.replace" } } },
+          "then": { "required": ["precondition"], "properties": { "precondition": { "required": ["sha256"] } } }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "global.json.load" } } },
+          "then": { "required": ["selector", "assetPath", "assetSha256"], "properties": { "target": { "properties": { "type": { "const": "global" }, "name": { "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" } } }, "selector": { "$ref": "#/$defs/globalSelector" } } }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "font.register" } } },
+          "then": { "required": ["selector", "assetPath", "assetSha256"], "properties": { "target": { "properties": { "type": { "const": "font" } } }, "selector": { "$ref": "#/$defs/fontSelector" } } }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "font.redirect" } } },
+          "then": { "required": ["value"], "properties": { "target": { "properties": { "type": { "const": "font" } } }, "selector": false } }
+        }
+      ]
+    }
+  }
+}

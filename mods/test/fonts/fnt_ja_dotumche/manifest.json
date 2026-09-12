@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_ja_dotumche",
+  "OriginalFontId": 9,
+  "Description": "DotumChe",
+  "FirstChar": 32,
+  "LastChar": 65439,
+  "GlyphCount": 836,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

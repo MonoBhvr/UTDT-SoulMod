@@ -1,0 +1,18 @@
+{
+  "formatVersion": 1,
+  "id": "dtkr.ch1",
+  "name": "DELTARUNE Korean Patch Chapter 1",
+  "version": "2.1.1",
+  "targetFile": "chapter1_windows/data.win",
+  "targetDataSha256": "82c2bb61b8d78cd287120f6301588fecba34ec5a890bac711b7a8774c760ec70",
+  "targets": [
+    {
+      "id": "deltarune.chapter1",
+      "targetFile": "chapter1_windows/data.win",
+      "targetDataSha256": "82c2bb61b8d78cd287120f6301588fecba34ec5a890bac711b7a8774c760ec70"
+    }
+  ],
+  "authors": ["DELTARUNE KR Team"],
+  "operationsFile": "operations.json",
+  "conflictPolicy": "stop"
+}

@@ -1,0 +1,659 @@
+[
+  {
+    "CharCode": 0,
+    "X": 0,
+    "Y": 0,
+    "Width": 0,
+    "Height": 1,
+    "Shift": 0,
+    "Offset": -10108
+  },
+  {
+    "CharCode": 5,
+    "X": 1,
+    "Y": 0,
+    "Width": 115,
+    "Height": 82,
+    "Shift": 33,
+    "Offset": 3
+  },
+  {
+    "CharCode": 29440,
+    "X": 20992,
+    "Y": 8448,
+    "Width": 768,
+    "Height": 2048,
+    "Shift": 1280,
+    "Offset": 256
+  },
+  {
+    "CharCode": 10240,
+    "X": 63492,
+    "Y": 36868,
+    "Width": 47109,
+    "Height": 51206,
+    "Shift": 16391,
+    "Offset": 18441
+  },
+  {
+    "CharCode": 32768,
+    "X": 319,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 21071,
+    "X": 58445,
+    "Y": 51065,
+    "Width": 18176,
+    "Height": 20037,
+    "Shift": 4152,
+    "Offset": 3
+  },
+  {
+    "CharCode": 0,
+    "X": 0,
+    "Y": 0,
+    "Width": 1,
+    "Height": 0,
+    "Shift": -10108,
+    "Offset": 36
+  },
+  {
+    "CharCode": 7680,
+    "X": 0,
+    "Y": 0,
+    "Width": 45568,
+    "Height": 49517,
+    "Shift": 16898,
+    "Offset": 7936
+  },
+  {
+    "CharCode": 6144,
+    "X": 1355,
+    "Y": 10240,
+    "Width": 1355,
+    "Height": 14336,
+    "Shift": 1355,
+    "Offset": 18432
+  },
+  {
+    "CharCode": 4096,
+    "X": 4,
+    "Y": 49152,
+    "Width": 3,
+    "Height": 20480,
+    "Shift": 0,
+    "Offset": 10240
+  },
+  {
+    "CharCode": 39175,
+    "X": 0,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 20,
+    "X": 0,
+    "Y": 100,
+    "Width": 0,
+    "Height": 20,
+    "Shift": 0,
+    "Offset": 20
+  },
+  {
+    "CharCode": 5,
+    "X": 1,
+    "Y": 0,
+    "Width": 115,
+    "Height": 82,
+    "Shift": 33,
+    "Offset": 3
+  },
+  {
+    "CharCode": 5,
+    "X": 19240,
+    "Y": 5,
+    "Width": 19256,
+    "Height": 5,
+    "Shift": 19272,
+    "Offset": 5
+  },
+  {
+    "CharCode": 1,
+    "X": 46080,
+    "Y": 3,
+    "Width": 10240,
+    "Height": 0,
+    "Shift": -24576,
+    "Offset": 0
+  },
+  {
+    "CharCode": 39175,
+    "X": 0,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 0,
+    "X": 120,
+    "Y": 0,
+    "Width": 40,
+    "Height": 0,
+    "Shift": 40,
+    "Offset": 0
+  },
+  {
+    "CharCode": 39175,
+    "X": 0,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 65280,
+    "X": 65535,
+    "Y": 255,
+    "Width": 32768,
+    "Height": 63,
+    "Shift": -32768,
+    "Offset": 63
+  },
+  {
+    "CharCode": 0,
+    "X": 0,
+    "Y": 0,
+    "Width": 256,
+    "Height": 0,
+    "Shift": -31744,
+    "Offset": 9432
+  },
+  {
+    "CharCode": 6144,
+    "X": 1355,
+    "Y": 10240,
+    "Width": 1355,
+    "Height": 14336,
+    "Shift": 1355,
+    "Offset": 18432
+  },
+  {
+    "CharCode": 21071,
+    "X": 58445,
+    "Y": 51065,
+    "Width": 18176,
+    "Height": 20037,
+    "Shift": 4152,
+    "Offset": 3
+  },
+  {
+    "CharCode": 29285,
+    "X": 0,
+    "Y": 11,
+    "Width": 0,
+    "Height": 31085,
+    "Shift": 28261,
+    "Offset": 28515
+  },
+  {
+    "CharCode": 51053,
+    "X": 8707,
+    "Y": 258,
+    "Width": 8192,
+    "Height": 7680,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 52448,
+    "X": 44279,
+    "Y": 35884,
+    "Width": 6909,
+    "Height": 16772,
+    "Shift": 3878,
+    "Offset": 4610
+  },
+  {
+    "CharCode": 51053,
+    "X": 8707,
+    "Y": 258,
+    "Width": 8192,
+    "Height": 7680,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 21071,
+    "X": 58445,
+    "Y": 51065,
+    "Width": 18176,
+    "Height": 20037,
+    "Shift": 4152,
+    "Offset": 3
+  },
+  {
+    "CharCode": 16256,
+    "X": 65535,
+    "Y": 65535,
+    "Width": 1040,
+    "Height": 0,
+    "Shift": 120,
+    "Offset": 0
+  },
+  {
+    "CharCode": 39175,
+    "X": 0,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 13790,
+    "X": 31350,
+    "Y": 16782,
+    "Width": 53314,
+    "Height": 52676,
+    "Shift": -19185,
+    "Offset": 3215
+  },
+  {
+    "CharCode": 51053,
+    "X": 8707,
+    "Y": 258,
+    "Width": 8192,
+    "Height": 7680,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 19224,
+    "X": 5,
+    "Y": 19240,
+    "Width": 5,
+    "Height": 19256,
+    "Shift": 5,
+    "Offset": 19272
+  },
+  {
+    "CharCode": 43107,
+    "X": 22595,
+    "Y": 59616,
+    "Width": 15184,
+    "Height": 8690,
+    "Shift": 3367,
+    "Offset": 24187
+  },
+  {
+    "CharCode": 32768,
+    "X": 319,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 5,
+    "X": 19240,
+    "Y": 5,
+    "Width": 19256,
+    "Height": 5,
+    "Shift": 19272,
+    "Offset": 5
+  },
+  {
+    "CharCode": 21071,
+    "X": 58445,
+    "Y": 51065,
+    "Width": 18176,
+    "Height": 20037,
+    "Shift": 4152,
+    "Offset": 3
+  },
+  {
+    "CharCode": 21611,
+    "X": 22474,
+    "Y": 56017,
+    "Width": 39985,
+    "Height": 11683,
+    "Shift": -13366,
+    "Offset": 24090
+  },
+  {
+    "CharCode": 11520,
+    "X": 8448,
+    "Y": 768,
+    "Width": 2048,
+    "Height": 1280,
+    "Shift": 256,
+    "Offset": 0
+  },
+  {
+    "CharCode": 6144,
+    "X": 1355,
+    "Y": 10240,
+    "Width": 1355,
+    "Height": 14336,
+    "Shift": 1355,
+    "Offset": 18432
+  },
+  {
+    "CharCode": 62770,
+    "X": 56038,
+    "Y": 56038,
+    "Width": 61933,
+    "Height": 61933,
+    "Shift": 2042,
+    "Offset": 2042
+  },
+  {
+    "CharCode": 32768,
+    "X": 319,
+    "Y": 0,
+    "Width": 0,
+    "Height": 0,
+    "Shift": 0,
+    "Offset": 0
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 21071,
+    "X": 58445,
+    "Y": 51065,
+    "Width": 18176,
+    "Height": 20037,
+    "Shift": 4152,
+    "Offset": 3
+  },
+  {
+    "CharCode": 10304,
+    "X": 8388,
+    "Y": 35472,
+    "Width": 5676,
+    "Height": 24593,
+    "Shift": 8748,
+    "Offset": -28368
+  },
+  {
+    "CharCode": 5,
+    "X": 1,
+    "Y": 0,
+    "Width": 116,
+    "Height": 45,
+    "Shift": 33,
+    "Offset": 3
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 16496,
+    "X": 8,
+    "Y": 16544,
+    "Width": 8,
+    "Height": 16592,
+    "Shift": 8,
+    "Offset": 16640
+  },
+  {
+    "CharCode": 5,
+    "X": 1,
+    "Y": 0,
+    "Width": 116,
+    "Height": 45,
+    "Shift": 33,
+    "Offset": 3
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 25977,
+    "X": 25454,
+    "Y": 30063,
+    "Width": 29806,
+    "Height": 29285,
+    "Shift": 2816,
+    "Offset": 0
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 50142,
+    "X": 49637,
+    "Y": 20375,
+    "Width": 65264,
+    "Height": 60487,
+    "Shift": -2162,
+    "Offset": 13607
+  },
+  {
+    "CharCode": 5,
+    "X": 1,
+    "Y": 0,
+    "Width": 116,
+    "Height": 45,
+    "Shift": 33,
+    "Offset": 3
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 58819,
+    "X": 38849,
+    "Y": 61519,
+    "Width": 18430,
+    "Height": 36588,
+    "Shift": 10231,
+    "Offset": -10443
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 65527,
+    "X": 33807,
+    "Y": 0,
+    "Width": 49157,
+    "Height": 8,
+    "Shift": -32768,
+    "Offset": 30
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 3840,
+    "X": 132,
+    "Y": 20992,
+    "Width": 65287,
+    "Height": 1535,
+    "Shift": -26432,
+    "Offset": 0
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 4374,
+    "X": 11360,
+    "Y": 12322,
+    "Width": 22673,
+    "Height": 1728,
+    "Shift": -28380,
+    "Offset": 11360
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  },
+  {
+    "CharCode": 10240,
+    "X": 0,
+    "Y": 10240,
+    "Width": 0,
+    "Height": 16384,
+    "Shift": 3906,
+    "Offset": 256
+  },
+  {
+    "CharCode": 8448,
+    "X": 768,
+    "Y": 2048,
+    "Width": 1280,
+    "Height": 256,
+    "Shift": 0,
+    "Offset": 29696
+  },
+  {
+    "CharCode": 1355,
+    "X": 10240,
+    "Y": 1355,
+    "Width": 14336,
+    "Height": 1355,
+    "Shift": 18432,
+    "Offset": 1355
+  }
+]

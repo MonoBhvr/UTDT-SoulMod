@@ -1,0 +1,12 @@
+{
+  "Name": "fnt_ja_tinynoelle",
+  "OriginalFontId": 2,
+  "Description": "-\uC724\uB514\uC790\uC778\uC6F9\uB3CB\uC6C0",
+  "Renderer": "soul_text",
+  "GlyphCount": 2485,
+  "HangulGlyphCount": 2350,
+  "TxtrIndex": 12,
+  "TxtrBlobOffset": 8178944,
+  "AtlasPngIndex": 3,
+  "Source": "dtkr_patch"
+}

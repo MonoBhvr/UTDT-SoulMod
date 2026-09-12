@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_ja_main",
+  "OriginalFontId": 1,
+  "Description": "JF Dot Shinonome Gothic 14",
+  "FirstChar": 32,
+  "LastChar": 65439,
+  "GlyphCount": 724,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

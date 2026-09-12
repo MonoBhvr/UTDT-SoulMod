@@ -1,0 +1,14 @@
+{
+  "formatVersion": 1,
+  "id": "minimal-fixture",
+  "name": "Minimal Fixture",
+  "version": "1.0.0",
+  "targetFile": "target.txt",
+  "targets": [
+    {
+      "id": "fixture.target",
+      "targetFile": "target.txt"
+    }
+  ],
+  "operationsFile": "operations.json"
+}

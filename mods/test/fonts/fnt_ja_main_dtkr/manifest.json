@@ -1,0 +1,12 @@
+{
+  "Name": "fnt_ja_main",
+  "OriginalFontId": 1,
+  "Description": "DeltaDotumKR",
+  "Renderer": "soul_text",
+  "GlyphCount": 12134,
+  "HangulGlyphCount": 11172,
+  "TxtrIndex": 16,
+  "TxtrBlobOffset": 8983680,
+  "AtlasPngIndex": 7,
+  "Source": "dtkr_patch"
+}

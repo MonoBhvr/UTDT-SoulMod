@@ -1,0 +1,89 @@
+[
+  {
+    "name": "valid-package",
+    "valid": true,
+    "manifest": {
+      "formatVersion": 1,
+      "id": "contract.fixture",
+      "name": "Contract Fixture",
+      "version": "1.0.0",
+      "targetFile": "data.win",
+      "targets": [{ "id": "deltarune.chapter1", "targetFile": "data.win", "targetDataSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }],
+      "operationsFile": "operations.json",
+      "dependencies": [],
+      "loadBefore": [],
+      "loadAfter": [],
+      "conflictPolicy": "stop"
+    },
+    "operations": [
+      {
+        "id": "contract.fixture.message",
+        "operationVersion": 1,
+        "modId": "contract.fixture",
+        "target": { "type": "string", "name": "fixture.message" },
+        "operation": "string.replace",
+        "precondition": { "expectedValue": "old" },
+        "value": "new",
+        "priority": 100,
+        "reads": ["string:fixture.message"],
+        "writes": ["string:fixture.message"]
+      }
+    ]
+  },
+  {
+    "name": "malformed-json",
+    "valid": false,
+    "rawManifest": "{\"formatVersion\":"
+  },
+  {
+    "name": "unknown-format-version",
+    "valid": false,
+    "manifest": { "formatVersion": 2, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": []
+  },
+  {
+    "name": "unknown-operation-version",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [{ "id": "contract.fixture.message", "operationVersion": 2, "modId": "contract.fixture", "target": { "type": "string", "name": "fixture.message" }, "operation": "string.replace", "precondition": { "expectedValue": "old" }, "value": "new", "reads": ["string:fixture.message"], "writes": ["string:fixture.message"] }]
+  },
+  {
+    "name": "unknown-operation-enum",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [{ "id": "contract.fixture.message", "operationVersion": 1, "modId": "contract.fixture", "target": { "type": "string", "name": "fixture.message" }, "operation": "resource.teleport", "reads": ["string:fixture.message"], "writes": ["string:fixture.message"] }]
+  },
+  {
+    "name": "mismatched-mod-id",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [{ "id": "contract.fixture.message", "operationVersion": 1, "modId": "other.mod", "target": { "type": "string", "name": "fixture.message" }, "operation": "string.replace", "precondition": { "expectedValue": "old" }, "value": "new", "reads": ["string:fixture.message"], "writes": ["string:fixture.message"] }]
+  },
+  {
+    "name": "duplicate-operation-id",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [
+      { "id": "contract.fixture.message", "operationVersion": 1, "modId": "contract.fixture", "target": { "type": "string", "name": "fixture.message" }, "operation": "string.replace", "precondition": { "expectedValue": "old" }, "value": "new", "reads": ["string:fixture.message"], "writes": ["string:fixture.message"] },
+      { "id": "contract.fixture.message", "operationVersion": 1, "modId": "contract.fixture", "target": { "type": "string", "name": "fixture.other" }, "operation": "string.replace", "precondition": { "expectedValue": "old" }, "value": "new", "reads": ["string:fixture.other"], "writes": ["string:fixture.other"] }
+    ]
+  },
+  {
+    "name": "malformed-global-selector",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [{ "id": "contract.fixture.global", "operationVersion": 1, "modId": "contract.fixture", "target": { "type": "global", "name": "lang_map" }, "operation": "global.json.load", "selector": { "applyAt": "draw_set_font" }, "assetPath": "assets/data.json", "assetSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "reads": ["global:lang"], "writes": ["global:lang_map"] }]
+  },
+  {
+    "name": "missing-asset-hash",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": [{ "id": "contract.fixture.font", "operationVersion": 1, "modId": "contract.fixture", "target": { "type": "font", "name": "contract.font" }, "operation": "font.register", "selector": { "size": 10, "bold": false, "italic": false, "first": 32, "last": 126 }, "assetPath": "assets/font.ttf", "reads": ["asset:assets/font.ttf"], "writes": ["font:contract.font"] }]
+  },
+  {
+    "name": "invalid-target-fingerprint",
+    "valid": false,
+    "manifest": { "formatVersion": 1, "id": "contract.fixture", "name": "Contract Fixture", "version": "1.0.0", "targetFile": "data.win", "targets": [{ "id": "deltarune", "targetFile": "data.win", "targetDataSha256": "not-a-sha256" }], "operationsFile": "operations.json", "conflictPolicy": "stop" },
+    "operations": []
+  }
+]

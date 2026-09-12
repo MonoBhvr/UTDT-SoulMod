@@ -1,0 +1,21 @@
+{
+    "name":  "DELTARUNE Korean Patch v2.1.1 (dtkr.ch4)",
+    "id":  "dtkr.ch4",
+    "dependencies":  [
+
+                     ],
+    "version":  "2.1.1",
+    "loadAfter":  [
+
+                  ],
+    "operationsFile":  "operations.json",
+    "formatVersion":  1,
+    "authors":  [
+                    "DELTARUNE KR Team"
+                ],
+    "conflictPolicy":  "stop",
+    "loadBefore":  [
+
+                   ],
+    "targetFile":  "chapter4_windows/data.win"
+}

@@ -1,0 +1,10 @@
+{
+  "formatVersion": 1,
+  "id": "test.mod",
+  "name": "SoulMod Phase 1 Test Mod Package",
+  "version": "1.0.0",
+  "targetFile": "DELTARUNE.exe",
+  "authors": ["UTDT SoulMod Team"],
+  "dependencies": [],
+  "stringsFile": "strings.json"
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "chapter1.language.global-map",
+    "operationVersion": 1,
+    "modId": "soulmod.runtime-proof.chapter1",
+    "target": {
+      "type": "global",
+      "name": "lang_map"
+    },
+    "operation": "global.json.load",
+    "selector": {
+      "applyAt": "first.draw_set_font",
+      "when": {
+        "global": "lang",
+        "equals": "ja"
+      }
+    },
+    "assetPath": "assets/lang/lang_ja.json",
+    "assetSha256": "78a7f9f2fece7fd7e4ebc6fb44cb0c0a2adb42f6a27ff364d6b93342259b7425",
+    "priority": 100,
+    "reads": ["global:lang", "asset:assets/lang/lang_ja.json"],
+    "writes": ["global:lang_map"]
+  },
+  {
+    "id": "chapter1.font.galmuri11",
+    "operationVersion": 1,
+    "modId": "soulmod.runtime-proof.chapter1",
+    "target": {
+      "type": "font",
+      "name": "soulmod.galmuri11"
+    },
+    "operation": "font.register",
+    "selector": {
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "first": 32,
+      "last": 55203
+    },
+    "assetPath": "assets/fonts/Galmuri11.ttf",
+    "assetSha256": "2c709890595668f7bdb6df408420fda957dde0288e95b31a1cc17a2ab98b4b4f",
+    "priority": 100,
+    "reads": ["asset:assets/fonts/Galmuri11.ttf"],
+    "writes": ["font:soulmod.galmuri11"]
+  },
+  {
+    "id": "chapter1.font.japanese-slot",
+    "operationVersion": 1,
+    "modId": "soulmod.runtime-proof.chapter1",
+    "target": {
+      "type": "font",
+      "name": "fnt_ja_main"
+    },
+    "operation": "font.redirect",
+    "value": "soulmod.galmuri11",
+    "priority": 100,
+    "reads": ["font:fnt_ja_main", "font:soulmod.galmuri11"],
+    "writes": ["font:fnt_ja_main"]
+  }
+]

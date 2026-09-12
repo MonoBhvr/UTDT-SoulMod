@@ -1,0 +1,9 @@
+{
+  "FontName": "fnt_main",
+  "OriginalFontId": 6,
+  "Description": "8bitoperator JVE",
+  "FirstChar": 32,
+  "LastChar": 126,
+  "GlyphCount": 270547,
+  "AtlasImage": "atlas.png"
+}

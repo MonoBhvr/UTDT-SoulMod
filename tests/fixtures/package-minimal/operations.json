@@ -1,0 +1,14 @@
+[
+  {
+    "id": "minimal-fixture.message",
+    "operationVersion": 1,
+    "modId": "minimal-fixture",
+    "target": { "type": "string", "name": "fixture.message" },
+    "operation": "string.replace",
+    "precondition": { "expectedValue": "old content" },
+    "value": "new content",
+    "priority": 100,
+    "reads": ["string:fixture.message"],
+    "writes": ["string:fixture.message"]
+  }
+]

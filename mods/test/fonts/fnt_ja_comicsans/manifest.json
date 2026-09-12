@@ -1,0 +1,10 @@
+{
+  "Name": "fnt_ja_comicsans",
+  "OriginalFontId": 0,
+  "Description": "HappyRuikaKyohkan-07",
+  "FirstChar": 32,
+  "LastChar": 65439,
+  "GlyphCount": 1202,
+  "Renderer": "soul_text",
+  "AtlasImage": "atlas.png"
+}

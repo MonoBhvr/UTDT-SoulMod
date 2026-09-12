@@ -1,0 +1,12 @@
+{
+  "Name": "fnt_ja_small",
+  "OriginalFontId": 8,
+  "Description": "-\uC724\uB514\uC790\uC778\uC6F9\uB3CB\uC6C0",
+  "Renderer": "soul_text",
+  "GlyphCount": 2487,
+  "HangulGlyphCount": 2350,
+  "TxtrIndex": 13,
+  "TxtrBlobOffset": 8261888,
+  "AtlasPngIndex": 4,
+  "Source": "dtkr_patch"
+}
