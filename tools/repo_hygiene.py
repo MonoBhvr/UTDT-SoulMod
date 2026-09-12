@@ -146,7 +146,7 @@ def build_report(repo_root: str) -> str:
     lines.append("- converter/SoulMod.UmtWorker/SoulMod.UmtWorker.csproj references ../../scratch/lib/*.dll as HintPath -> Wave 2 build reproducibility.")
     lines.append("- converter/SoulMod.Converter.Tests/ResourceDeltaTests.cs reads scratch/test_game/chapter1_windows/data.win -> Wave 3 fixture gating.")
     lines.append("- runtime/SoulMod.Runtime/src/SoulModEngine.cpp hardcodes d:\\UTDT-SoulMod\\scratch dump path -> Wave 5 runtime promotion.")
-    lines.append("- mods/test/dtkr_diff/data_dtkr_ch1.win (17 MiB) and mods/test/font.ttf (13 MiB) are large binary fixtures; consider Git LFS or external provisioning.")
+    lines.append("- tests/fixtures/mods-legacy/test/dtkr_diff/data_dtkr_ch1.win (17 MiB) and tests/fixtures/mods-legacy/test/font.ttf (13 MiB) are large binary fixtures; consider Git LFS or external provisioning.")
     lines.append("")
 
     return "\n".join(lines)

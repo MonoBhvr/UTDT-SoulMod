@@ -106,9 +106,10 @@ def test_classification_policy() -> None:
     expect_category("mods/runtime-proof/assets/fonts/Galmuri11.ttf", "MOD_SOURCE")
     expect_category("mods/runtime-proof/assets/fonts/LICENSE.txt", "MOD_SOURCE")
     expect_category("mods/runtime-proof/assets/lang/lang_ja.json", "MOD_SOURCE")
-    expect_category("mods/test/dtkr_diff/atlases/atlas_000.png", "MOD_SOURCE")
-    expect_category("mods/test/fonts/fnt_main/manifest.json", "MOD_SOURCE")
-    expect_category("mods/test/dtkr_diff/data_dtkr_ch1.win", "MOD_SOURCE")
+    expect_category("tests/fixtures/mods-legacy/test/dtkr_diff/atlases/atlas_000.png", "FIXTURE")
+    expect_category("tests/fixtures/mods-legacy/test/fonts/fnt_main/manifest.json", "FIXTURE")
+    expect_category("tests/fixtures/mods-legacy/test/dtkr_diff/data_dtkr_ch1.win", "FIXTURE")
+    expect_category("tests/fixtures/mods-legacy/override_test/manifest.json", "FIXTURE")
 
     # --- docs / license / config (track) ---
     expect_category("README.md", "DOC")
