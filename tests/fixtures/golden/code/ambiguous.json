@@ -1,0 +1,10 @@
+{
+  "base": [{ "name": "gml_Script_demo", "bytecodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "instructionCount": 2 }],
+  "patched": [
+    { "name": "gml_Script_demo", "bytecodeSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "instructionCount": 3 },
+    { "name": "gml_Script_demo", "bytecodeSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "instructionCount": 4 }
+  ],
+  "expectedCandidates": 0,
+  "expectedReports": 1,
+  "expectedReportReasons": ["AmbiguousCodeFingerprint"]
+}

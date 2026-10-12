@@ -193,7 +193,11 @@ def test_symlink_in_install_rejected():
     tree = TempTree()
     try:
         install = make_fake_install(os.path.join(tree.path, "install"))
-        os.symlink(os.path.join(tree.path, "outside-target"), os.path.join(install.root_path, "link.exe"))
+        try:
+            os.symlink(os.path.join(tree.path, "outside-target"), os.path.join(install.root_path, "link.exe"))
+        except OSError:
+            print("SKIP test_symlink_in_install_rejected: symlink creation not permitted on this host")
+            return
         outcome = ecc.prepare_copy(install, os.path.join(tree.path, "managed"))
         check(isinstance(outcome, ecc.Failure) and outcome.reason is ecc.FailureReason.SYMLINK_REJECTED, f"expected symlink rejection: {outcome}")
     finally:

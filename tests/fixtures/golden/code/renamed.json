@@ -1,0 +1,7 @@
+{
+  "base": [{ "name": "gml_Script_before", "bytecodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "instructionCount": 2 }],
+  "patched": [{ "name": "gml_Script_after", "bytecodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "instructionCount": 2 }],
+  "expectedCandidates": 0,
+  "expectedReports": 2,
+  "expectedReportReasons": ["RenamedOrAddedCode", "RenamedOrRemovedCode"]
+}

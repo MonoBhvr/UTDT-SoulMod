@@ -31,7 +31,11 @@ def test_directory_symlink_in_install_rejected():
         install = make_fake_install(os.path.join(tree.path, "install"), with_extra=True)
         link_target = os.path.join(tree.path, "outside-dir")
         os.makedirs(link_target)
-        os.symlink(link_target, os.path.join(install.root_path, "linked_dir"))
+        try:
+            os.symlink(link_target, os.path.join(install.root_path, "linked_dir"))
+        except OSError:
+            print("SKIP test_directory_symlink_in_install_rejected: symlink creation not permitted on this host")
+            return
         outcome = ecc.prepare_copy(install, os.path.join(tree.path, "managed"))
         check(isinstance(outcome, ecc.Failure) and outcome.reason is ecc.FailureReason.SYMLINK_REJECTED, f"expected directory symlink rejection: {outcome}")
         check(not os.path.exists(os.path.join(tree.path, "managed")), "managed root created despite directory symlink")
@@ -124,6 +128,29 @@ def test_persisted_directory_manifest_equals_recorded_after_promotion():
         tree.cleanup()
 
 
+def test_persisted_proof_failure_retains_owned_root_for_cleanup():
+    tree = TempTree()
+    try:
+        install = make_fake_install(os.path.join(tree.path, "install"))
+        managed = os.path.join(tree.path, "managed")
+
+        def tampering_promote(staging: str, target: str) -> None:
+            os.rename(staging, target)
+            with open(os.path.join(target, "post-promotion-tamper.txt"), "w", encoding="utf-8") as handle:
+                handle.write("unexpected")
+
+        outcome = ecc.prepare_copy(install, managed, promote=tampering_promote)
+        check(isinstance(outcome, ecc.Failure) and outcome.reason is ecc.FailureReason.COPY_FAILED,
+              f"expected persisted proof failure: {outcome}")
+        check(os.path.isfile(os.path.join(managed, ".soulmod-copy-manifest.json")),
+              "proof-failed managed root lost its ownership manifest")
+        cleaned = ecc.clean_partial(managed)
+        check(isinstance(cleaned, ecc.CleanupReceipt) and cleaned.removed_managed_root,
+              f"owned proof-failed root was not recoverable by cleanup: {cleaned}")
+    finally:
+        tree.cleanup()
+
+
 def test_case_sensitive_containment_on_posix():
     if eci.PATH_CASE_INSENSITIVE:
         return
@@ -152,6 +179,7 @@ TESTS = [
     test_promotion_failure_preserves_prior_owned_root,
     test_unowned_staging_sibling_preserved_by_cleanup,
     test_persisted_directory_manifest_equals_recorded_after_promotion,
+    test_persisted_proof_failure_retains_owned_root_for_cleanup,
     test_case_sensitive_containment_on_posix,
     test_volume_root_not_trimmed,
 ]

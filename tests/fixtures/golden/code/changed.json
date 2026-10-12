@@ -1,0 +1,8 @@
+{
+  "base": [{ "name": "gml_Script_demo", "bytecodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "instructionCount": 2 }],
+  "patched": [{ "name": "gml_Script_demo", "bytecodeSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "instructionCount": 3 }],
+  "expectedCandidates": 1,
+  "expectedReports": 0,
+  "expectedReportReasons": [],
+  "expectedBaseGraphSha256": "55fb2ee8a3391f18b089ce819151ea4adc49bac88c6abfc3115ac26b2a9e0888"
+}

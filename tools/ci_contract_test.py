@@ -79,8 +79,28 @@ def test_workflow_contract() -> None:
         "Windows lane must invoke the stable entrypoint rather than duplicate its build logic",
     )
     require(
-        "if: ${{ github.event_name == 'workflow_dispatch' }}" in workflow,
-        "Windows lane must be explicitly dispatchable with provisioned inputs",
+        "github.event_name == 'workflow_dispatch'" in workflow,
+        "Windows lane must remain explicitly dispatchable with provisioned inputs",
+    )
+    require(
+        "vars.SOULMOD_WINDOWS_NATIVE_AVAILABLE == 'true'" in workflow,
+        "Windows lane must require an explicit runner-availability variable",
+    )
+    require(
+        "contains(github.event.pull_request.labels.*.name, 'windows-native')" in workflow,
+        "pull requests must opt into the Windows lane with the windows-native label",
+    )
+    require(
+        "github.event_name == 'pull_request'" in workflow,
+        "Windows lane must support explicitly labeled pull requests",
+    )
+    require(
+        "github.event_name == 'workflow_dispatch' ||" in workflow,
+        "manual dispatch must remain independently available",
+    )
+    require(
+        "needs:" not in workflow[workflow.index("windows-native:"):],
+        "managed contracts must not require the optional native job",
     )
     require(
         '--path "$stdout_file"' not in workflow and '--path "$stderr_file"' not in workflow,
@@ -117,6 +137,12 @@ def test_missing_artifact_is_nonzero() -> None:
         require("MISSING_ARTIFACT" in completed.stderr, "missing artifact failure must be explicit")
 
 
+def test_validator_without_a_subcommand_is_a_successful_usage_request() -> None:
+    completed = run_validator(ROOT, [])
+    require(completed.returncode == 0, "validator usage request must not fail")
+    require("{fixture-gate,record-result,require-artifacts}" in completed.stdout, "usage must list validation commands")
+
+
 def test_artifact_paths_are_root_contained() -> None:
     with tempfile.TemporaryDirectory(prefix="soulmod-ci-containment-") as temporary:
         root = Path(temporary) / "root"
@@ -129,8 +155,9 @@ def test_artifact_paths_are_root_contained() -> None:
         link = evidence / "outside-link.txt"
         try:
             link.symlink_to(outside)
-        except OSError as error:
-            raise AssertionError("symlink containment regression requires symlink support") from error
+        except OSError:
+            print("SKIP test_artifact_paths_are_root_contained: symlink creation not permitted on this host")
+            return
 
         for candidate in (str(outside), "../outside.txt", "evidence/outside-link.txt"):
             completed = run_validator(
@@ -203,6 +230,7 @@ def test_valid_relative_integrity_is_complete() -> None:
 def main() -> int:
     test_workflow_contract()
     test_missing_artifact_is_nonzero()
+    test_validator_without_a_subcommand_is_a_successful_usage_request()
     test_artifact_paths_are_root_contained()
     test_valid_relative_integrity_is_complete()
     print("RESULT: PASS")
