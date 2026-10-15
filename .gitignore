@@ -67,3 +67,14 @@ ehthumbs.db
 
 # ---- Accidental empty stub file at repo root ----
 /dotnet
+
+# ---- Vendored upstream runner clone + its build trees (never committed) ----
+butterscotch/
+
+# ---- Game-derived binaries: patch payloads, raw data images (never committed) ----
+*.xdelta
+*.win
+
+# ---- Game binaries: never track new ones ----
+*.win
+tests/fixtures/mods-legacy/test/font.ttf
